@@ -13,7 +13,7 @@
 
         <!-- Mensagem a ser cifrada ou decifrada -->
         <textarea name="mensagem" id="idMensagem" placeholder="Informe a mensagem"></textarea>
-        
+
         <!-- radio buttons para opção cifrar ou decifrar -->
         <div class="inputs">
             <label class="container">Cifrar
@@ -36,6 +36,137 @@
         <!-- Área de exibição do resultado -->
         <output id="idOut"></output>
     </div>
+
+    <script>
+        // Variáveis globais para armazenar dados
+        var mensagem
+        var tipo
+        var cifra
+        var btCifra
+        var saida
+
+        inicializar()
+
+        btCifra.onclick = function () {
+            // saida.value = "Hello World!"
+            let isTelaValida = consistirTela()
+            if (isTelaValida) {
+                cadastrar()
+                if (tipo == "C") {
+                    cifrar()
+                }
+                else if (tipo == "D") {
+                    decifrar()
+                }
+            }
+        }
+
+        // Função para inicializar o script
+        function inicializar() {
+            btCifra = document.getElementById("idBtCifra")
+            saida = document.getElementById("idOut")
+            // limparTela()
+        }
+
+        // Função para verificar se a tela possui dados válidos
+        function consistirTela() {
+            let mensagem = document.getElementById("idMensagem").value
+            let cifra = document.getElementById("idCifra").value
+
+            // Verifica se o campo mensagem é nulo
+            if (mensagem == "" || mensagem == " ") {
+                saida.value = "Campo Mensagem, preenchimento obrigatório"
+                saida.classList.add("alerta")
+                document.getElementById("idMensagem").focus()
+                return false
+            }
+
+            // Verifica se o cifra mensagem é nulo
+            if (cifra == "" || cifra == " ") {
+                saida.value = "Campo Cifra, preenchimento obrigatório"
+                saida.classList.add("alerta")
+                document.getElementById("idCifra").focus()
+                return false
+            }
+
+            saida.classList.remove("alerta")
+            return true
+        }
+
+        // Função para cadastrar as variáveis
+        function cadastrar() {
+            mensagem = document.getElementById("idMensagem").value;
+            tipo = document.querySelector('input[name="nmTipo"]:checked').value;
+
+            let cifraInput = document.getElementById("idCifra").value;
+
+            // Verifica se a cifra é um caractere alfabético e converte para numérico
+            if (cifraInput.match(/[a-zA-Z]/)) {
+                cifra = cifraInput.toLowerCase().charCodeAt(0) - 96; // Converte a letra para minúscula e obtém a posição no alfabeto
+            } else {
+                cifra = parseInt(cifraInput);
+            }
+            console.log(mensagem);
+            console.log(cifra);
+            console.log(tipo);
+        }
+
+        // Função para crifrar a mensagem
+        function cifrar() {
+            let mensagemCifrada = "";
+
+            // Converte a cifra para um número inteiro
+            const shift = parseInt(cifra);
+
+            // Converte toda a mensagem para minúsculas
+            const mensagemMinuscula = mensagem.toLowerCase();
+
+            // Percorre cada caractere da mensagem
+            for (let i = 0; i < mensagemMinuscula.length; i++) {
+                const char = mensagemMinuscula[i];
+                // Verifica se o caractere está no alfabeto (entre 'a' e 'z')
+                if (char.match(/[a-z]/)) {
+                    // Obtém o código do caractere de acordo com a tabela ASCII
+                    const charCode = char.charCodeAt(0);
+                    // Faz a cifragem do caractere
+                    const cifraCharCode = ((charCode - 97 + shift) % 26) + 97;
+                    mensagemCifrada += String.fromCharCode(cifraCharCode);
+                } else {
+                    mensagemCifrada += char;
+                }
+            }
+
+            saida.value = "Texto Cifrado: " + mensagemCifrada;
+        }
+
+        // Função para decifrar a mensagem
+        function decifrar() {
+            let mensagemDecifrada = "";
+
+            // Converte a cifra para um número inteiro
+            const shift = parseInt(cifra);
+
+            // Converte toda a mensagem para minúsculas
+            const mensagemMinuscula = mensagem.toLowerCase();
+
+            // Percorre cada caractere da mensagem
+            for (let i = 0; i < mensagemMinuscula.length; i++) {
+                const char = mensagemMinuscula[i];
+                // Verifica se o caractere está no alfabeto (entre 'a' e 'z')
+                if (char.match(/[a-z]/)) {
+                    // Obtém o código do caractere de acordo com a tabela ASCII
+                    const charCode = char.charCodeAt(0);
+                    // Faz a decifragem do caractere
+                    const decifraCharCode = ((charCode - 97 - shift + 26) % 26) + 97;
+                    mensagemDecifrada += String.fromCharCode(decifraCharCode);
+                } else {
+                    mensagemDecifrada += char;
+                }
+            }
+
+            saida.value = "Texto Decifrado: " + mensagemDecifrada;
+        }
+    </script>
 </body>
 
 </html>
