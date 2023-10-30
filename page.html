@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifra de César</title>
+</head>
+
+<body>
+    <div class="cifra_area">
+        <h1>Cifra de César</h1>
+
+        <!-- Mensagem a ser cifrada ou decifrada -->
+        <textarea name="mensagem" id="idMensagem" placeholder="Informe a mensagem"></textarea>
+        
+        <!-- radio buttons para opção cifrar ou decifrar -->
+        <div class="inputs">
+            <label class="container">Cifrar
+                <input type="radio" name="nmTipo" id="idCifrar" value="C" checked>
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">Decifrar
+                <input type="radio" name="nmTipo" id="idDecifrar" value="D">
+                <span class="checkmark"></span>
+            </label>
+
+            <!-- Valor da cifra -->
+            <input type="text" id="idCifra" maxlength="1" placeholder="Informe a Cifra (1 dígito)">
+        </div>
+
+        <!-- Botão de confirmação -->
+        <button id="idBtCifra" class="margens">Confirmar</button>
+
+        <!-- Área de exibição do resultado -->
+        <output id="idOut"></output>
+    </div>
+</body>
+
+</html>
