@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+    font-family: 'Nunito', sans-serif;
+    /* font-weight: 500; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: #121214;
+}
+
+h1 {
+    color: #8F41FF;
+    text-align: center;
+    font-weight: 900;
+}
+
+.cifra_area {
+    overflow: hidden;
+    width: 700px;
+    margin: 64px auto;
+    padding: 64px 80px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+input, textarea {
+    background: #313137;
+    border: 1px solid #313137;
+    border-radius: 15px;
+    outline: none;
+    color: #ffffff;
+}
+
+input{
+    padding: 0 16px;
+    height: 35px;
+}
+
+textarea{
+    width: 100%;
+    min-height: 120px;
+    max-height: 240px;
+    resize: vertical;
+    padding: 16px;
+    line-height: 28px;
+}
+
+.inputs{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    width: 100%;
+    background: #5CA37A;
+    border: 1px solid #29292E;
+    border-radius: 20px;
+    outline: none;
+    color: #FFFFFF;
+    height: 64px;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #37C77F;
+    transition: background-color 0.8s;
+}
+
+output{
+    color: #FFFFFF;
+}
+
+.alerta {
+    color: red;
+}
+
+.container {
+    color: #ffffff;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+}
